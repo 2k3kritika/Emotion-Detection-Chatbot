@@ -106,6 +106,7 @@ No emotions are harmed during runtime.
 
 ## 🗂️ Folder Structure
 
+```text
 emotion_chatbot/
 │
 ├── data/                       # Raw and processed datasets
@@ -133,7 +134,7 @@ emotion_chatbot/
 ├── requirements.txt            # Project dependencies
 ├── README.md                   # Project documentation
 └── .gitignore                  # Git ignore rules
-
+```
 
 
 ---
