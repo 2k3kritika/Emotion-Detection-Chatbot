@@ -205,7 +205,7 @@ Unit tests are written for:
 
 ---
 ## Branch Definition
-```text
+
 
 | Branch                      | Purpose                                                                                                      |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------ |
@@ -217,8 +217,7 @@ Unit tests are written for:
 | `feature/response-engine`   | Work for Response + Context team (templates, response logic, conversation state).                            |
 | `feature/app-integration`   | Work for App/Utils/Testing team (glue everything, run tests, main app).                                      |
 
-
-```
+---
 
 ## Branches Clear Workflow
 
