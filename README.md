@@ -288,3 +288,148 @@ Final merge – after integration testing, develop merges into main.
 | Team 5 | feature/app-integration   | `src/app.py`, `src/utils/`, `tests/`, `requirements.txt`, `README.md`      | Team lead  |
 
 ---
+
+## Every team AIM
+### **Team 1: Data & Preprocessing Team**
+
+**Folders they own**
+
+```
+data/
+src/preprocessing/
+```
+
+**People**
+
+* 1 Data Lead (pushes to GitHub)
+* 1 Data Support (pair programming, cleaning, testing)
+
+**Responsibilities**
+
+* Prepare `emotions_dataset.csv` and `intents.json`
+* Clean text data
+* Generate `cleaned_text.csv`
+* Encode labels → `labels_encoded.pkl`
+* Ensure preprocessing functions are reusable by models
+
+They stop working once:
+
+* Text cleaning + tokenization is stable
+* Other teams can import preprocessing without crying
+
+---
+
+### **Team 2: Emotion Detection Team**
+
+**Folders they own**
+
+```
+src/emotion_detection/
+models/emotion_classifier.pkl
+```
+
+**People**
+
+* 1 Model Lead (pushes)
+* 1 Model Support
+
+**Responsibilities**
+
+* Train emotion classification model
+* Save trained model properly
+* Implement emotion prediction logic
+* Output standardized emotion labels: `angry`, `sad`, `happy`, `neutral`
+
+They must NOT touch:
+
+* App logic
+* Intent logic
+* Response wording
+
+If their output is wrong, the chatbot feels emotionally illiterate. Social crime.
+
+---
+
+### **Team 3: Intent Detection Team**
+
+**Folders they own**
+
+```
+src/intent_detection/
+models/intent_classifier.pkl
+models/vectorizer.pkl
+```
+
+**People**
+
+* 1 Intent Lead (pushes)
+* 1 Intent Support
+
+**Responsibilities**
+
+* Train intent classifier
+* Handle intent prediction
+* Ensure vectorizer consistency
+* Map user input → intent reliably
+
+They coordinate with:
+
+* Preprocessing team (for text input)
+* Response team (intent names must match)
+
+---
+
+### **Team 4: Response & Context Team**
+
+**Folders they own**
+
+```
+src/response_engine/
+src/context_manager/
+```
+
+**People**
+
+* 1 Logic Lead (pushes)
+* 1 Logic Support
+
+**Responsibilities**
+
+* Write emotion-aware response templates
+* Build response selection logic
+* Maintain conversation state
+* Prevent robotic or tone-deaf replies
+
+This team makes the chatbot feel human instead of a FAQ page.
+
+---
+
+### **Team 5: App, Utils & Testing Team**
+
+**Folders they own**
+
+```
+src/app.py
+src/utils/
+tests/
+requirements.txt
+README.md
+.gitignore
+```
+
+**People**
+
+* 1 Integration Lead (pushes)
+* 1 QA / Support
+
+**Responsibilities**
+
+* Glue everything together
+* Ensure clean imports
+* Write and run tests
+* Handle logging
+* Make sure the app actually runs end-to-end
+
+This team catches everyone else’s mistakes. They will be tired. Be kind.
+
+---
