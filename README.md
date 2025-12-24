@@ -277,7 +277,7 @@ Final merge – after integration testing, develop merges into main.
 ---
 
 ---
-## Team-folder ownership
+## 📁 Team-folder ownership
 
 | Team   | Branch                    | Folder Ownership                                                           | Who pushes |
 | ------ | ------------------------- | -------------------------------------------------------------------------- | ---------- |
@@ -289,9 +289,11 @@ Final merge – after integration testing, develop merges into main.
 
 ---
 
-## Every team AIM
-### **Team 1: Data & Preprocessing Team**
+## 📁 Every team AIM
 
+NOTE: Everyone else in the team works locally / via Live Share, but the lead is the only one who pushes to the branch.
+
+### ** 👩‍💻 Team 1: Data & Preprocessing Team**
 **Folders they own**
 
 ```
@@ -319,7 +321,7 @@ They stop working once:
 
 ---
 
-### **Team 2: Emotion Detection Team**
+### ** 🤖 Team 2: Emotion Detection Team**
 
 **Folders they own**
 
@@ -350,7 +352,7 @@ If their output is wrong, the chatbot feels emotionally illiterate. Social crime
 
 ---
 
-### **Team 3: Intent Detection Team**
+### ** 💬 Team 3: Intent Detection Team**
 
 **Folders they own**
 
@@ -379,7 +381,7 @@ They coordinate with:
 
 ---
 
-### **Team 4: Response & Context Team**
+### ** 🗣️ Team 4: Response & Context Team**
 
 **Folders they own**
 
@@ -404,7 +406,7 @@ This team makes the chatbot feel human instead of a FAQ page.
 
 ---
 
-### **Team 5: App, Utils & Testing Team**
+### ** 🛠️ Team 5: App, Utils & Testing Team**
 
 **Folders they own**
 
