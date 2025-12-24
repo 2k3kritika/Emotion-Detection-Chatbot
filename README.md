@@ -232,28 +232,47 @@ Unit tests are written for:
                      │   develop     │  ← Integration branch
                      └──────┬────────┘
                             │
-        ┌───────────────────┼────────────────────┐
-        ▼                   ▼                    ▼
-┌────────────────┐   ┌────────────────┐   ┌────────────────┐
-│feature/preprocessing│ │feature/emotion-detection│ │feature/intent-detection│
-└───────────────┘   └───────────────┘   └───────────────┘
-        │                   │                    │
-        ▼                   ▼                    ▼
-     Team pushes        Team pushes          Team pushes
-     PR → develop       PR → develop         PR → develop
+                            |
+                            ▼                    
+    ┌────────────────────────────────────────────────┐
+    │            feature/preprocessing               │
+    │            feature/emotion-detection           │ 
+    │            feature/intent-detection            │ 
+    │            feature/response-engine             │ 
+    │            feature/app-integration             │
+    └────────────────────────────────────────────────┘
+                            │                 
+                            ▼                  
+                       Team pushes         
+                    Pull Request → develop         
 
-        ┌───────────────────┐
-        ▼                   ▼
-┌────────────────┐   ┌────────────────┐
-│feature/response-engine│ │feature/app-integration│
-└───────────────┘   └───────────────┘
-        │                   │
-        ▼                   ▼
-      Team pushes PR → develop
-
-After all feature branches are merged into develop:
+       After all feature branches tested will be merged into develop:
                             │
                             ▼
                      ┌───────────────┐
                      │     main      │  ← Merge develop into main
                      └───────────────┘
+
+---
+## ✅ Key points
+ 
+1. main branch – final stable code, protected. Only updated after all features pass tests.
+
+2. develop branch – integration branch. All feature branches merge here first to test together.
+
+2. Feature branches – one per team:
+
+    - feature/preprocessing → Team 1
+
+    - feature/emotion-detection → Team 2
+
+    - feature/intent-detection → Team 3
+
+    - feature/response-engine → Team 4
+
+    - feature/app-integration → Team 5
+
+Pull Requests – each team pushes their feature branch as a PR to develop.
+
+Final merge – after integration testing, develop merges into main.
+---
