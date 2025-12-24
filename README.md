@@ -136,7 +136,6 @@ emotion_chatbot/
 └── .gitignore                  # Git ignore rules
 ```
 
-
 ---
 
 ## 🔄 System Workflow
@@ -203,4 +202,21 @@ Unit tests are written for:
 - Intent prediction accuracy
 - Response selection logic
 - Context handling
+
+---
+## Branch Definition
+```text
+
+| Branch                      | Purpose                                                                                                      |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `main`                      | Final, stable branch. Protected. Only updated after all features are merged and tested.                      |
+| `develop`                   | Integration branch. All feature branches are merged here first. App is tested end-to-end here before `main`. |
+| `feature/preprocessing`     | Work for Preprocessing team (data cleaning, tokenization).                                                   |
+| `feature/emotion-detection` | Work for Emotion team (train emotion model, prediction logic).                                               |
+| `feature/intent-detection`  | Work for Intent team (train intent model, prediction logic).                                                 |
+| `feature/response-engine`   | Work for Response + Context team (templates, response logic, conversation state).                            |
+| `feature/app-integration`   | Work for App/Utils/Testing team (glue everything, run tests, main app).                                      |
+
+
+```
 
