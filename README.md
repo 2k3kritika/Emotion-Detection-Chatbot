@@ -108,31 +108,32 @@ No emotions are harmed during runtime.
 
 emotion_chatbot/
 │
-├── data/ # Raw and processed datasets
-│ ├── raw/ # Original datasets
-│ └── processed/ # Cleaned and vectorized data
+├── data/                       # Raw and processed datasets
+│   ├── raw/                    # Original datasets
+│   └── processed/              # Cleaned and vectorized data
 │
-├── models/ # Trained ML models
-│ ├── emotion_model.pkl
-│ └── intent_model.pkl
+├── models/                     # Trained ML models
+│   ├── emotion_model.pkl       # Saved emotion classification model
+│   └── intent_model.pkl        # Saved intent classification model
 │
-├── src/ # Source code
-│ ├── preprocessing/ # Text cleaning and tokenization
-│ ├── emotion_detection/ # Emotion prediction logic
-│ ├── intent_detection/ # Intent prediction logic
-│ ├── context_manager/ # Conversation state handling
-│ ├── response_engine/ # Response selection logic
-│ ├── utils/ # Helper utilities
-│ └── app.py # Main application entry point
+├── src/                        # Source code
+│   ├── preprocessing/          # Text cleaning and tokenization
+│   ├── emotion_detection/      # Emotion prediction logic
+│   ├── intent_detection/       # Intent prediction logic
+│   ├── context_manager/        # Conversation state handling
+│   ├── response_engine/        # Response selection logic
+│   ├── utils/                  # Helper utilities
+│   └── app.py                  # Main application entry point
 │
-├── tests/ # Unit and integration tests
-│ ├── test_emotion.py
-│ ├── test_intent.py
-│ └── test_response.py
+├── tests/                      # Unit and integration tests
+│   ├── test_emotion.py         # Tests for emotion prediction
+│   ├── test_intent.py          # Tests for intent prediction
+│   └── test_response.py        # Tests for response selection
 │
-├── requirements.txt # Project dependencies
-├── README.md # Project documentation
-└── .gitignore
+├── requirements.txt            # Project dependencies
+├── README.md                   # Project documentation
+└── .gitignore                  # Git ignore rules
+
 
 
 ---
