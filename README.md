@@ -220,3 +220,40 @@ Unit tests are written for:
 
 ```
 
+## Branches Clear Workflow
+
+                     ┌───────────────┐
+                     │     main      │  ← Protected, stable branch
+                     └──────┬────────┘
+                            │
+                            │ merge after testing
+                            ▼
+                     ┌───────────────┐
+                     │   develop     │  ← Integration branch
+                     └──────┬────────┘
+                            │
+        ┌───────────────────┼────────────────────┐
+        ▼                   ▼                    ▼
+┌────────────────┐   ┌────────────────┐   ┌────────────────┐
+│feature/preprocessing│ │feature/emotion-detection│ │feature/intent-detection│
+└───────────────┘   └───────────────┘   └───────────────┘
+        │                   │                    │
+        ▼                   ▼                    ▼
+     Team pushes        Team pushes          Team pushes
+     PR → develop       PR → develop         PR → develop
+
+        ┌───────────────────┐
+        ▼                   ▼
+┌────────────────┐   ┌────────────────┐
+│feature/response-engine│ │feature/app-integration│
+└───────────────┘   └───────────────┘
+        │                   │
+        ▼                   ▼
+      Team pushes PR → develop
+
+After all feature branches are merged into develop:
+                            │
+                            ▼
+                     ┌───────────────┐
+                     │     main      │  ← Merge develop into main
+                     └───────────────┘
