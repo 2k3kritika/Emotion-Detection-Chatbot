@@ -1,0 +1,34 @@
+/*
+================================
+FILE: response_templates.json
+================================
+PURPOSE:
+Stores predefined chatbot responses mapped by emotion and intent.
+
+TASKS FOR THIS FILE:
+1. Define multiple responses per emotion-intent pair.
+2. Ensure responses are emotionally appropriate.
+3. Avoid repetitive or robotic language.
+
+EXPECTED OUTPUT:
+- Structured JSON mapping emotions + intents to responses.
+- Example:
+  emotion -> intent -> list of responses
+
+CONNECTED TO:
+- response_selector.py (reader)
+- app.py (indirectly)
+
+INTEGRATION NOTES:
+- No code depends on HOW responses are written,
+  only on the structure.
+- Label names must match predict_emotion and predict_intent output.
+
+OWNER:
+Logic Team
+
+DO NOT:
+- Add logic
+- Change JSON structure without coordination
+================================
+*/

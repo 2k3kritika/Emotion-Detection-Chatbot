@@ -1,0 +1,27 @@
+# ================================
+# FILE: emotions_dataset.csv
+# ================================
+# PURPOSE:
+# Contains the ORIGINAL, UNMODIFIED emotion-labeled dataset.
+# This is the source data used for training the emotion classifier.
+#
+# TASKS FOR THIS FILE:
+# 1. Store raw emotion text samples.
+# 2. Serve as the ground truth dataset.
+#
+# RULES:
+# - DO NOT edit, clean, or preprocess this file.
+# - DO NOT change labels or text.
+#
+# INTEGRATION NOTES:
+# - All preprocessing must happen in preprocessing scripts.
+# - This file must remain unchanged for reproducibility.
+#
+# OWNER:
+# ML Team
+#
+# DO NOT:
+# - Apply cleaning
+# - Add derived columns
+# - Rename labels
+# ================================
