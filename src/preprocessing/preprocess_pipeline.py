@@ -121,30 +121,24 @@ def preprocess_text(
     train_csv: str = "data/raw/train.csv",
     test_csv: str = "data/raw/test.csv",
     val_csv: str = "data/raw/val.csv",
-    intents_json: str = "data/raw/intents.json",
+    intents_json: str = "data/raw/Intent.json",
     out_dir: str = "data/processed",
 ) -> Dict[str, str]:
     """Run preprocessing pipeline for emotions (CSV) and intents (JSON).
 
     - Reads train.csv, test.csv, val.csv.
     - Applies clean_text() to all emotion texts.
-    - Saves merged result as cleaned_text.csv in out_dir.
+    - Saves merged result as cleaned_text_emotion.csv in out_dir.
     - Encodes emotion labels and saves labels_encoded.pkl.
-    - Cleans intents.json texts with clean_text() and saves cleaned_intents.json.
-
-    Returns:
-        Dict with paths for:
-        - 'cleaned_text'
-        - 'intents'
-        - 'label_encoder'
+    - Reads Intent.json, cleans texts with clean_text(), saves cleaned_intent.csv.
     """
     os.makedirs(out_dir, exist_ok=True)
 
     # 1. Load and clean emotions from all splits
     texts, emotions = _load_emotion_csvs([train_csv, test_csv, val_csv])
 
-    # 2. Save cleaned_text.csv (required name)
-    cleaned_text_path = os.path.join(out_dir, "cleaned_text.csv")
+    # 2. Save cleaned_text_emotion.csv
+    cleaned_text_path = os.path.join(out_dir, "cleaned_text_emotion.csv")
     try:
         import pandas as pd
 
@@ -165,22 +159,37 @@ def preprocess_text(
     le_path = os.path.join(out_dir, "labels_encoded.pkl")
     le.save(le_path)
 
-    # 4. Process intents with the same clean_text()
+    # 4. Process intents with the same clean_text() and save as CSV
     with open(intents_json, "r", encoding="utf-8") as f:
         intents = json.load(f)
 
-    cleaned_intents: Dict[str, Any] = {}
-    for intent, phrases in intents.items():
-        cleaned = [clean_text(p) for p in phrases if clean_text(p)]
-        cleaned_intents[intent] = cleaned
+    rows: List[Dict[str, str]] = []
 
-    cleaned_intents_path = os.path.join(out_dir, "cleaned_intents.json")
-    with open(cleaned_intents_path, "w", encoding="utf-8") as f:
-        json.dump(cleaned_intents, f, ensure_ascii=False, indent=2)
+    # Adjust this loop if Intent.json has a different structure
+    # Here we assume: { "intent_name": ["phrase1", "phrase2", ...], ... }
+    for intent_name, phrases in intents.items():
+        for p in phrases:
+            cleaned = clean_text(p)
+            if cleaned.strip():
+                rows.append({"intent": intent_name, "text": cleaned})
+
+    cleaned_intent_csv = os.path.join(out_dir, "cleaned_intent.csv")
+    try:
+        import pandas as pd
+
+        intents_df = pd.DataFrame(rows)
+        intents_df.to_csv(cleaned_intent_csv, index=False)
+    except Exception:
+        import csv
+
+        with open(cleaned_intent_csv, "w", encoding="utf-8", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=["intent", "text"])
+            writer.writeheader()
+            writer.writerows(rows)
 
     return {
         "cleaned_text": cleaned_text_path,
-        "intents": cleaned_intents_path,
+        "cleaned_intent": cleaned_intent_csv,
         "label_encoder": le_path,
     }
 
