@@ -279,13 +279,13 @@ Final merge – after integration testing, develop merges into main.
 ---
 ## 📁 Team-folder ownership
 
-| Team   | Branch                    | Folder Ownership                                                           | Who pushes |
-| ------ | ------------------------- | -------------------------------------------------------------------------- | ---------- |
-| Team 1 | feature/preprocessing     | `data/`, `src/preprocessing/`                                              | Team lead  |
-| Team 2 | feature/emotion-detection | `src/emotion_detection/`, `models/emotion_classifier.pkl`                  | Team lead  |
-| Team 3 | feature/intent-detection  | `src/intent_detection/`, `models/intent_classifier.pkl` & `vectorizer.pkl` | Team lead  |
-| Team 4 | feature/response-engine   | `src/response_engine/`, `src/context_manager/`                             | Team lead  |
-| Team 5 | feature/app-integration   | `src/app.py`, `src/utils/`, `tests/`, `requirements.txt`, `README.md`      | Team lead  |
+| Team   | Branch                    | Folder Ownership                                                           | Who pushes              |
+| ------ | ------------------------- | -------------------------------------------------------------------------- | ----------------------- |
+| Team 1 | feature/preprocessing     | `data/`, `src/preprocessing/`                                              | Krishna Sai & Kajal     |
+| Team 2 | feature/emotion-detection | `src/emotion_detection/`, `models/emotion_classifier.pkl`                  | Emesh & Hari Preeti     |
+| Team 3 | feature/intent-detection  | `src/intent_detection/`, `models/intent_classifier.pkl` & `vectorizer.pkl` | Kritika & Harini        |
+| Team 4 | feature/response-engine   | `src/response_engine/`, `src/context_manager/`                             | Hasini & Pavna          |
+| Team 5 | feature/app-integration   | `src/app.py`, `src/utils/`, `tests/`, `requirements.txt`, `README.md`      | Hamsa & Shashank        |
 
 ---
 
