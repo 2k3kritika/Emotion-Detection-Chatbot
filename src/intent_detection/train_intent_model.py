@@ -1,37 +1,49 @@
-"""
-================================
-FILE: train_intent_model.py
-================================
-PURPOSE:
-Trains the intent classification model used to understand
-what the user wants (greeting, question, complaint, etc.).
+# src/intent_detection/train_intent_model.py
 
-TASKS FOR THIS FILE:
-1. Load processed intent training data.
-2. Apply the same preprocessing used elsewhere.
-3. Train an intent classification model.
-4. Save the trained model to the models directory.
+import pandas as pd
+import pickle
 
-EXPECTED OUTPUT:
-- models/intent_classifier.pkl
-- data/processed/labels_encoded.pkl (if intent labels are encoded here)
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
 
-CONNECTED TO:
-- text_cleaning.py
-- tokenizer.py
-- intents.json
-- predict_intent.py (consumer)
+from src.preprocessing.text_cleaner import clean_text
 
-INTEGRATION NOTES:
-- This script is run manually.
-- Must NOT be imported into app.py.
-- Output model must exist before chatbot runtime.
 
-OWNER:
-ML Team
+INTENT_DATA_PATH = "data/processed/cleaned_intent.csv"
+VECTOR_PATH = "models/intent_vectorizer.pkl"
+MODEL_PATH = "models/intent_classifier.pkl"
 
-DO NOT:
-- Add chatbot runtime logic
-- Print excessive debug output
-================================
-"""
+
+def train_intent_model():
+    # Load intent dataset
+    df = pd.read_csv(INTENT_DATA_PATH)
+
+    # debugging 
+    print(df["intent"].value_counts())
+
+    # Clean text
+    df["text"] = df["text"].apply(clean_text)
+
+    X = df["text"]
+    y = df["intent"]
+
+    # Vectorize text
+    vectorizer = TfidfVectorizer()
+    X_vec = vectorizer.fit_transform(X)
+
+    # Train classifier
+    model = LogisticRegression(max_iter=1000)
+    model.fit(X_vec, y)
+
+    # Save vectorizer and model
+    with open(VECTOR_PATH, "wb") as f:
+        pickle.dump(vectorizer, f)
+
+    with open(MODEL_PATH, "wb") as f:
+        pickle.dump(model, f)
+
+    print("Intent model and vectorizer saved successfully.")
+
+
+if __name__ == "__main__":
+    train_intent_model()
