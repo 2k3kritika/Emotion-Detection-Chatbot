@@ -1,0 +1,31 @@
+"""
+================================
+FILE: requirements.txt
+================================
+PURPOSE:
+Defines all Python dependencies required to run the project.
+
+TASKS FOR THIS FILE:
+1. List exact library dependencies.
+2. Ensure environment reproducibility.
+3. Prevent "it works on my machine" syndrome.
+
+EXPECTED OUTPUT:
+- Successful `pip install -r requirements.txt`
+- No version conflicts.
+
+CONNECTED TO:
+- Entire project
+
+INTEGRATION NOTES:
+- Every new library must be added here.
+- Version pinning is recommended.
+
+OWNER:
+Integration Team
+
+DO NOT:
+- Add unused libraries
+- Remove dependencies without team agreement
+================================
+"""

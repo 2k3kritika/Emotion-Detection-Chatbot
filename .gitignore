@@ -1,0 +1,31 @@
+"""
+================================
+FILE: .gitignore
+================================
+PURPOSE:
+Prevents unnecessary or sensitive files from being committed.
+
+TASKS FOR THIS FILE:
+1. Ignore virtual environments.
+2. Ignore cache files.
+3. Ignore local configs and logs.
+
+EXPECTED OUTPUT:
+- Clean GitHub repository.
+- No accidental commits.
+
+CONNECTED TO:
+- Git version control
+
+INTEGRATION NOTES:
+- Model files should be included only if required.
+- Logs and temp files must stay ignored.
+
+OWNER:
+Integration Team
+
+DO NOT:
+- Ignore source code
+- Remove critical exclusions
+================================
+"""
