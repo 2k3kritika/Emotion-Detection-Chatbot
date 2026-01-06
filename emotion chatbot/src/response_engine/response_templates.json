@@ -1,0 +1,78 @@
+{
+  "happy": {
+    "greeting": [
+      "Hey! 😊 So nice to hear from you!",
+      "Hello there! Hope everything’s going great!",
+      "Hi! 😄 I’m glad you’re here!",
+      "Heyyy! Looks like a good day already!"
+    ],
+    "thanks": [
+      "Anytime! 😄",
+      "Always happy to help!",
+      "No worries at all!",
+      "Glad I could assist you!"
+    ],
+    "help": [
+      "Sure! I’d love to help you.",
+      "Absolutely! What do you need?",
+      "Tell me what’s on your mind 😊"
+    ]
+  },
+
+  "sad": {
+    "greeting": [
+      "Hi… I’m here for you.",
+      "Hello. Take your time, I’m listening.",
+      "Hey, it’s okay to feel this way."
+    ],
+    "complaint": [
+      "That sounds really painful. 💙",
+      "I’m sorry you’re going through this.",
+      "It’s understandable to feel like this.",
+      "That must be very difficult for you."
+    ],
+    "help": [
+      "I’ll do my best to support you.",
+      "Let’s see how we can make this better.",
+      "You don’t have to handle this alone."
+    ]
+  },
+
+  "angry": {
+    "complaint": [
+      "I can hear how upset you are.",
+      "That sounds extremely frustrating.",
+      "I understand why you’re angry.",
+      "You have every right to feel this way."
+    ],
+    "help": [
+      "Let’s work through this calmly.",
+      "I’m here to fix this with you.",
+      "Let’s find a solution together.",
+      "Tell me exactly what went wrong."
+    ],
+    "greeting": [
+      "Hi. I sense some frustration—let’s talk.",
+      "Hello. I’m here to help resolve this."
+    ]
+  },
+
+  "neutral": {
+    "greeting": [
+      "Hello! How can I assist you?",
+      "Hi there! What can I do for you today?",
+      "Hey! Let me know how I can help."
+    ],
+    "help": [
+      "Sure, please explain your issue.",
+      "I’m ready when you are.",
+      "Go ahead, I’m listening.",
+      "Let me know what you need."
+    ],
+    "thanks": [
+      "You’re welcome!",
+      "Happy to help.",
+      "Anytime!"
+    ]
+  }
+}
