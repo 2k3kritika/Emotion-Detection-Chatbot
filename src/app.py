@@ -1,11 +1,12 @@
-# to run:
+# app.py
+# To run:
 # pip install -r requirements.txt
 # uvicorn src.app:app --reload
-
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import uuid
+from pathlib import Path
 
 # Preprocessing & Models
 from src.preprocessing.text_cleaner import clean_text
@@ -16,33 +17,34 @@ from src.emotion_detection.emotion_predictor import EmotionPredictor
 from src.context_manager.conversation_state import ConversationState
 from src.response_engine.response_selector import ResponseSelector
 
-
+# ----------- FastAPI Setup -----------
 app = FastAPI(
     title="Emotion-Aware Chatbot API",
     description="An API for an emotion and intent aware chatbot",
     version="1.0.0"
 )
 
-# Initialize components (loaded once)
+# ----------- Base Path -----------
+BASE_PATH = Path(__file__).resolve().parents[1]  # src/
+
+# ----------- Initialize Components -----------
 intent_predictor = IntentPredictor(
-    model_path="models/intent_classifier.pkl",
-    vectorizer_path="models/intent_vectorizer.pkl"
+    model_path=BASE_PATH / "models" / "intent_classifier.pkl",
+    vectorizer_path=BASE_PATH / "models" / "intent_vectorizer.pkl"
 )
 
 emotion_predictor = EmotionPredictor(
-    model_path="models/emotion_classifier.pkl"
+    model_path=BASE_PATH / "models" / "emotion_classifier.pkl",
+    vectorizer_path=BASE_PATH / "models" / "emotion_vectorizer.pkl"
 )
 
 context_manager = ConversationState()
-response_selector = ResponseSelector()
-
+response_selector = ResponseSelector()  # automatically uses absolute path
 
 # ----------- Request / Response Schemas -----------
-
 class ChatRequest(BaseModel):
     message: str
     session_id: str | None = None
-
 
 class ChatResponse(BaseModel):
     session_id: str
@@ -50,9 +52,7 @@ class ChatResponse(BaseModel):
     emotion: str
     response: str
 
-
 # ----------- Routes -----------
-
 @app.post("/chat", response_model=ChatResponse)
 def chat(request: ChatRequest):
     if not request.message.strip():
@@ -67,7 +67,7 @@ def chat(request: ChatRequest):
 
     # Predictions
     intent = intent_predictor.predict(request.message)
-    emotion = emotion_predictor.predict([cleaned_text])
+    emotion = emotion_predictor.predict(cleaned_text)  # fixed: pass string, not list
 
     # Context
     last_intent = context_manager.get_last_intent(session_id)
@@ -93,8 +93,6 @@ def chat(request: ChatRequest):
         emotion=emotion,
         response=response
     )
-
-
 
 @app.get("/")
 def health_check():

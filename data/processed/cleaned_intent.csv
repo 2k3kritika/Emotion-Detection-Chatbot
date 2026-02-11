@@ -1,144 +1,114 @@
-intent,text
-Greeting,hi
-Greeting,hi there
-Greeting,hola
-Greeting,hello
-Greeting,hello there
-Greeting,hya
-Greeting,hya there
-GreetingResponse,my user is adam
-GreetingResponse,this is adam
-GreetingResponse,i am adam
-GreetingResponse,it is adam
-GreetingResponse,my user is bella
-GreetingResponse,this is bella
-GreetingResponse,i am bella
-GreetingResponse,it is bella
-CourtesyGreeting,how are you
-CourtesyGreeting,hi how are you
-CourtesyGreeting,hello how are you
-CourtesyGreeting,hola how are you
-CourtesyGreeting,how are you doing
-CourtesyGreeting,hope you are doing well
-CourtesyGreeting,hello hope you are doing well
-CourtesyGreetingResponse,good thanks my user is adam
-CourtesyGreetingResponse,good thanks this is adam
-CourtesyGreetingResponse,good thanks i am adam
-CourtesyGreetingResponse,good thanks it is adam
-CourtesyGreetingResponse,great thanks my user is bella
-CourtesyGreetingResponse,great thanks this is bella
-CourtesyGreetingResponse,great thanks i am bella
-CourtesyGreetingResponse,great thanks it is bella
-CurrentHumanQuery,what is my name
-CurrentHumanQuery,what do you call me
-CurrentHumanQuery,who do you think i am
-CurrentHumanQuery,what do you think i am
-CurrentHumanQuery,who are you talking to
-CurrentHumanQuery,what name do you call me by
-CurrentHumanQuery,tell me my name
-NameQuery,what is your name
-NameQuery,what could i call you
-NameQuery,what can i call you
-NameQuery,what do your friends call you
-NameQuery,who are you
-NameQuery,tell me your name
-RealNameQuery,what is your real name
-RealNameQuery,what is your real name please
-RealNameQuery,what s your real name
-RealNameQuery,tell me your real name
-RealNameQuery,your real name
-RealNameQuery,your real name please
-RealNameQuery,your real name please
-TimeQuery,what is the time
-TimeQuery,what s the time
-TimeQuery,do you know what time it is
-TimeQuery,do you know the time
-TimeQuery,can you tell me the time
-TimeQuery,tell me what time it is
-TimeQuery,time
-Thanks,ok thank you
-Thanks,ok thanks
-Thanks,ok
-Thanks,thanks
-Thanks,thank you
-Thanks,that s helpful
-NotTalking2U,i am not talking to you
-NotTalking2U,i was not talking to you
-NotTalking2U,not talking to you
-NotTalking2U,wasn t for you
-NotTalking2U,wasn t meant for you
-NotTalking2U,wasn t communicating to you
-NotTalking2U,wasn t speaking to you
-UnderstandQuery,do you understand what i am saying
-UnderstandQuery,do you understand me
-UnderstandQuery,do you know what i am saying
-UnderstandQuery,do you get me
-UnderstandQuery,comprendo
-UnderstandQuery,know what i mean
-Shutup,be quiet
-Shutup,shut up
-Shutup,stop talking
-Shutup,enough talking
-Shutup,please be quiet
-Shutup,quiet
-Shutup,shhh
-Swearing,fuck off
-Swearing,fuck
-Swearing,twat
-Swearing,shit
-GoodBye,bye
-GoodBye,adios
-GoodBye,see you later
-GoodBye,goodbye
-CourtesyGoodBye,thanks bye
-CourtesyGoodBye,thanks for the help goodbye
-CourtesyGoodBye,thank you bye
-CourtesyGoodBye,thank you goodbye
-CourtesyGoodBye,thanks goodbye
-CourtesyGoodBye,thanks good bye
-WhoAmI,can you see me
-WhoAmI,do you see me
-WhoAmI,can you see anyone in the camera
-WhoAmI,do you see anyone in the camera
-WhoAmI,identify me
-WhoAmI,who am i please
-Clever,you are very clever
-Clever,you are a very clever girl
-Clever,you are very intelligent
-Clever,you are a very intelligent girl
-Clever,you are a genious
-Clever,clever girl
-Clever,genious
-Gossip,i am bored gossip with me
-Gossip,got any gossip
-Gossip,i want to hear some gossip
-Gossip,tell me some gossip
-Gossip,any gossip
-Gossip,tell me some more gossip
-Jokes,tell me a joke
-Jokes,do you know any jokes
-Jokes,how about a joke
-Jokes,give me a joke
-Jokes,make me laugh
-Jokes,i need cheering up
-PodBayDoor,open the pod bay door
-PodBayDoor,can you open the pod bay door
-PodBayDoor,will you open the pod bay door
-PodBayDoor,open the pod bay door please
-PodBayDoor,can you open the pod bay door please
-PodBayDoor,will you open the pod bay door please
-PodBayDoor,pod bay door
-PodBayDoorResponse,why
-PodBayDoorResponse,why not
-PodBayDoorResponse,why can you not open the pod bay door
-PodBayDoorResponse,why will you not open the pod bay door
-PodBayDoorResponse,well why not
-PodBayDoorResponse,surely you can
-PodBayDoorResponse,tell me why
-SelfAware,can you prove you are self aware
-SelfAware,can you prove you are self aware
-SelfAware,can you prove you have a conscious
-SelfAware,can you prove you are self aware please
-SelfAware,can you prove you are self aware please
-SelfAware,can you prove you have a conscious please
-SelfAware,prove you have a conscious
+text,intent
+hi,greeting
+hi there,greeting
+hola,greeting
+hello,greeting
+hello there,greeting
+hya,greeting
+hya there,greeting
+hello human please tell me your genisys user,greeting
+my user is adam,greeting_response
+this is adam,greeting_response
+i am adam,greeting_response
+it is adam,greeting_response
+my user is bella,greeting_response
+this is bella,greeting_response
+i am bella,greeting_response
+it is bella,greeting_response
+hi human how can i help,greeting_response
+hello human what can i do for you,greeting_response
+hola human how can i help you,greeting_response
+how are you,courtesy_greeting
+hi how are you,courtesy_greeting
+hello how are you,courtesy_greeting
+hola how are you,courtesy_greeting
+hope you are doing well,courtesy_greeting
+hello i am great how are you,courtesy_greeting_response
+hi i am great how are you,courtesy_greeting_response
+hello i am good thank you how are you,courtesy_greeting_response
+what is my name,current_human_query
+what do you call me,current_human_query
+who do you think i am,current_human_query
+who are you talking to,current_human_query
+tell me my name,current_human_query
+what is your name,name_query
+what could i call you,name_query
+what can i call you,name_query
+what do your friends call you,name_query
+who are you,name_query
+tell me your name,name_query
+what is your real name,real_name_query
+what is your real name please,real_name_query
+what s your real name,real_name_query
+tell me your real name,real_name_query
+what is the time,time_query
+what s the time,time_query
+do you know what time it is,time_query
+can you tell me the time,time_query
+tell me what time it is,time_query
+ok thank you,thanks
+ok thanks,thanks
+that s helpful,thanks
+i am not talking to you,not_talking_to_you
+i was not talking to you,not_talking_to_you
+not talking to you,not_talking_to_you
+wasn t for you,not_talking_to_you
+wasn t meant for you,not_talking_to_you
+do you understand what i am saying,understand_query
+do you understand me,understand_query
+do you know what i am saying,understand_query
+do you get me,understand_query
+comprendo,understand_query
+know what i mean,understand_query
+be quiet,shutup
+shut up,shutup
+stop talking,shutup
+enough talking,shutup
+please be quiet,shutup
+quiet,shutup
+shhh,shutup
+fuck off,swearing
+fuck,swearing
+twat,swearing
+shit,swearing
+bye,goodbye
+adios,goodbye
+see you later,goodbye
+goodbye,goodbye
+thanks bye,courtesy_goodbye
+thanks for the help,courtesy_goodbye
+goodbye,courtesy_goodbye
+thank you bye,courtesy_goodbye
+thank you goodbye,courtesy_goodbye
+thanks good bye,courtesy_goodbye
+can you see me,whoami
+do you see me,whoami
+can you see anyone in the camera,whoami
+identify me,whoami
+who am i please,whoami
+you are very clever,clever
+you are a very clever girl,clever
+you are very intelligent,clever
+you are a very intelligent girl,clever
+you are a genius,clever
+clever girl,clever
+genius,clever
+i am bored,gossip
+gossip with me,gossip
+got any gossip,gossip
+i want to hear some gossip,gossip
+tell me some gossip,gossip
+any gossip,gossip
+tell me some more gossip,gossip
+tell me a joke,jokes
+do you know any jokes,jokes
+how about a joke,jokes
+give me a joke,jokes
+make me laugh,jokes
+i need cheering up,jokes
+open the pod bay door,podbaydoor
+can you open the pod bay door,podbaydoor
+will you open the pod bay door,podbaydoor
+open the pod bay door please,podbaydoor
+can you open the pod bay door please,podbaydoor
+will you open the pod bay door please,podbaydoor

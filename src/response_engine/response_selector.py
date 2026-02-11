@@ -1,20 +1,22 @@
-# response_selector.py
 import json
-import os
 import random
 from typing import Optional
-
+from pathlib import Path
 
 class ResponseSelector:
     """
     Selects responses based on intent, emotion, and conversation context.
     """
 
-    def __init__(
-        self,
-        templates_path: str = "src/response_engine/response_templates.json"
-    ):
-        if not os.path.exists(templates_path):
+    def __init__(self, templates_path: str = None):
+        # Use default path relative to this file if none provided
+        if templates_path is None:
+            base = Path(__file__).resolve().parents[1]  # points to src/response_engine
+            templates_path = base / "response_templates.json"
+
+        templates_path = Path(templates_path)
+
+        if not templates_path.exists():
             raise FileNotFoundError(
                 f"Response templates not found at {templates_path}"
             )

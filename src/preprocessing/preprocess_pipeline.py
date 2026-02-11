@@ -1,3 +1,5 @@
+# preprocess_pipeline.py
+
 import os
 import json
 from typing import Dict, Any, List
@@ -194,7 +196,7 @@ if __name__ == "__main__":
     parser.add_argument("--train", default="data/raw/train.csv")
     parser.add_argument("--test", default="data/raw/test.csv")
     parser.add_argument("--val", default="data/raw/val.csv")
-    parser.add_argument("--intents", default="data/raw/Intent.json")
+    parser.add_argument("--intents", default="data/raw/intents.json")
     parser.add_argument("--out", default="data/processed")
     args = parser.parse_args()
 

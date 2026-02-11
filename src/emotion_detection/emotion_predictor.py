@@ -1,3 +1,5 @@
+# emotion_predictor.py
+
 from pathlib import Path
 import joblib
 
@@ -6,13 +8,14 @@ from src.preprocessing.text_cleaner import clean_text
 
 
 class EmotionPredictor:
-    def __init__(self):
+    def __init__(self, model_path=None, vectorizer_path=None, label_encoder_path=None):
         base = Path(__file__).resolve().parents[2]
 
-        self.model = joblib.load(base / "models/emotion_classifier.pkl")
-        self.vectorizer = joblib.load(base / "models/emotion_vectorizer.pkl")
+        # Use paths passed in, otherwise default to original paths
+        self.model = joblib.load(model_path or base / "models/emotion_classifier.pkl")
+        self.vectorizer = joblib.load(vectorizer_path or base / "models/emotion_vectorizer.pkl")
         self.label_encoder = LabelEncoderWrapper.load(
-            base / "data/processed/labels_encoded.pkl"
+            label_encoder_path or base / "data/processed/labels_encoded.pkl"
         )
 
     def predict(self, text: str) -> str:
