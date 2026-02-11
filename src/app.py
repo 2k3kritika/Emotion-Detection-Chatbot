@@ -1,43 +1,101 @@
-"""
-================================
-FILE: app.py
-================================
-PURPOSE:
-Main entry point of the chatbot application.
-Acts as the orchestrator connecting all modules.
+# to run:
+# pip install -r requirements.txt
+# uvicorn src.app:app --reload
 
-TASKS FOR THIS FILE:
-1. Accept user input.
-2. Call text preprocessing.
-3. Call emotion prediction.
-4. Call intent prediction.
-5. Update conversation context.
-6. Call response selector.
-7. Output final chatbot response.
 
-EXPECTED OUTPUT:
-- Input: User message (string)
-- Output: Chatbot reply (string)
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+import uuid
 
-CONNECTED TO:
-- text_cleaning.py
-- predict_emotion.py
-- predict_intent.py
-- conversation_state.py
-- response_selector.py
-- logger.py
+# Preprocessing & Models
+from src.preprocessing.text_cleaner import clean_text
+from src.intent_detection.predict_intent import IntentPredictor
+from src.emotion_detection.emotion_predictor import EmotionPredictor
 
-INTEGRATION NOTES:
-- This file should NOT contain ML logic.
-- Keep logic linear and readable.
-- Any module change must reflect here.
+# Core logic
+from src.context_manager.conversation_state import ConversationState
+from src.response_engine.response_selector import ResponseSelector
 
-OWNER:
-Integration Team
 
-DO NOT:
-- Train models
-- Hardcode responses
-- Add heavy logic
-================================
-"""
+app = FastAPI(
+    title="Emotion-Aware Chatbot API",
+    description="An API for an emotion and intent aware chatbot",
+    version="1.0.0"
+)
+
+# Initialize components (loaded once)
+intent_predictor = IntentPredictor(
+    model_path="models/intent_classifier.pkl",
+    vectorizer_path="models/intent_vectorizer.pkl"
+)
+
+emotion_predictor = EmotionPredictor(
+    model_path="models/emotion_classifier.pkl"
+)
+
+context_manager = ConversationState()
+response_selector = ResponseSelector()
+
+
+# ----------- Request / Response Schemas -----------
+
+class ChatRequest(BaseModel):
+    message: str
+    session_id: str | None = None
+
+
+class ChatResponse(BaseModel):
+    session_id: str
+    intent: str
+    emotion: str
+    response: str
+
+
+# ----------- Routes -----------
+
+@app.post("/chat", response_model=ChatResponse)
+def chat(request: ChatRequest):
+    if not request.message.strip():
+        raise HTTPException(status_code=400, detail="Message cannot be empty")
+
+    # Session handling
+    session_id = request.session_id or str(uuid.uuid4())
+    context_manager.initialize_session(session_id)
+
+    # Preprocessing
+    cleaned_text = clean_text(request.message)
+
+    # Predictions
+    intent = intent_predictor.predict(request.message)
+    emotion = emotion_predictor.predict([cleaned_text])
+
+    # Context
+    last_intent = context_manager.get_last_intent(session_id)
+
+    # Response selection
+    response = response_selector.select_response(
+        intent=intent,
+        emotion=emotion,
+        last_intent=last_intent
+    )
+
+    # Update context
+    context_manager.update_state(
+        session_id=session_id,
+        intent=intent,
+        emotion=emotion,
+        response=response
+    )
+
+    return ChatResponse(
+        session_id=session_id,
+        intent=intent,
+        emotion=emotion,
+        response=response
+    )
+
+
+
+@app.get("/")
+def health_check():
+    return {"status": "running", "message": "Emotion-Aware Chatbot API is alive"}

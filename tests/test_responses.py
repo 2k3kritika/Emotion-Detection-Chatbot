@@ -1,34 +1,44 @@
-"""
-================================
-FILE: test_responses.py
-================================
-PURPOSE:
-Validates that the chatbot selects correct responses
-based on emotion, intent, and context.
+from src.response_engine.response_selector import ResponseSelector
 
-TASKS FOR THIS FILE:
-1. Test response selection logic.
-2. Ensure emotion + intent mapping works correctly.
-3. Verify fallback responses exist for edge cases.
 
-EXPECTED OUTPUT:
-- Test pass/fail results.
-- Assertion errors if response logic breaks.
+def test_valid_intent_and_emotion():
+    selector = ResponseSelector(
+        templates_path="src/response_engine/response_templates.json"
+    )
 
-CONNECTED TO:
-- response_selector.py
-- response_templates.json
-- conversation_state.py
+    response = selector.select_response(
+        intent="greeting",
+        emotion="happy"
+    )
 
-INTEGRATION NOTES:
-- This test ensures the chatbot sounds human.
-- If this fails, the bot may reply incorrectly.
+    assert response is not None
+    assert isinstance(response, str)
+    assert len(response) > 0
 
-OWNER:
-Testing Team
 
-DO NOT:
-- Modify response templates here
-- Hardcode responses inside tests
-================================
-"""
+def test_unknown_intent_fallback():
+    selector = ResponseSelector(
+        templates_path="src/response_engine/response_templates.json"
+    )
+
+    response = selector.select_response(
+        intent="unknown_intent",
+        emotion="neutral"
+    )
+
+    assert response is not None
+    assert isinstance(response, str)
+
+
+def test_missing_emotion_fallback():
+    selector = ResponseSelector(
+        templates_path="src/response_engine/response_templates.json"
+    )
+
+    response = selector.select_response(
+        intent="greeting",
+        emotion="nonexistent_emotion"
+    )
+
+    assert response is not None
+    assert isinstance(response, str)

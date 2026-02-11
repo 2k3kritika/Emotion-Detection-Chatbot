@@ -1,34 +1,77 @@
-/*
-================================
-FILE: response_templates.json
-================================
-PURPOSE:
-Stores predefined chatbot responses mapped by emotion and intent.
+{
+  "greeting": {
+    "happy": [
+      "Hey there! You sound cheerful today.",
+      "Hello! Nice energy you've got."
+    ],
+    "sad": [
+      "Hi. I'm here if you need someone to talk to.",
+      "Hello. Want to tell me what's been weighing on you?"
+    ],
+    "angry": [
+      "Hey. Let's take a breath and talk it out.",
+      "Hi. I can tell you're frustrated."
+    ],
+    "neutral": [
+      "Hello! How can I help you today?",
+      "Hi there. What would you like to do?"
+    ]
+  },
 
-TASKS FOR THIS FILE:
-1. Define multiple responses per emotion-intent pair.
-2. Ensure responses are emotionally appropriate.
-3. Avoid repetitive or robotic language.
+  "help": {
+    "happy": [
+      "Glad you're feeling good. How can I help?",
+      "Happy to assist! What do you need?"
+    ],
+    "sad": [
+      "I’ll do my best to help. Tell me what’s wrong.",
+      "I’m here. What do you need help with?"
+    ],
+    "angry": [
+      "I get that this is frustrating. Let’s fix it.",
+      "Let’s sort this out calmly."
+    ],
+    "neutral": [
+      "Sure. What do you need help with?",
+      "Tell me how I can assist you."
+    ]
+  },
 
-EXPECTED OUTPUT:
-- Structured JSON mapping emotions + intents to responses.
-- Example:
-  emotion -> intent -> list of responses
+  "complaint": {
+    "angry": [
+      "That sounds upsetting. Want to explain what happened?",
+      "I can tell you're annoyed. Let's talk it through."
+    ],
+    "sad": [
+      "I'm sorry you're dealing with this.",
+      "That sounds difficult. Tell me more."
+    ],
+    "neutral": [
+      "I see. Please describe the issue.",
+      "Thanks for letting me know. What happened?"
+    ]
+  },
 
-CONNECTED TO:
-- response_selector.py (reader)
-- app.py (indirectly)
+  "goodbye": {
+    "happy": [
+      "Goodbye! Take care.",
+      "See you later. Stay positive!"
+    ],
+    "sad": [
+      "Goodbye. I hope things feel better soon.",
+      "Take care of yourself."
+    ],
+    "neutral": [
+      "Goodbye!",
+      "See you next time."
+    ]
+  },
 
-INTEGRATION NOTES:
-- No code depends on HOW responses are written,
-  only on the structure.
-- Label names must match predict_emotion and predict_intent output.
-
-OWNER:
-Logic Team
-
-DO NOT:
-- Add logic
-- Change JSON structure without coordination
-================================
-*/
+  "fallback": {
+    "neutral": [
+      "I'm not sure I understood that. Could you rephrase?",
+      "Can you explain that a bit more?",
+      "I didn’t quite get that. Try saying it differently."
+    ]
+  }
+}

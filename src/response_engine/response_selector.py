@@ -1,35 +1,57 @@
-"""
-================================
-FILE: response_selector.py
-================================
-PURPOSE:
-Selects the final chatbot response based on
-predicted emotion, intent, and conversation context.
+# response_selector.py
+import json
+import os
+import random
+from typing import Optional
 
-TASKS FOR THIS FILE:
-1. Load response templates.
-2. Match emotion and intent.
-3. Randomly select an appropriate response.
-4. Ensure tone matches emotional state.
 
-EXPECTED OUTPUT:
-- Input: emotion, intent, conversation context
-- Output: One response string
+class ResponseSelector:
+    """
+    Selects responses based on intent, emotion, and conversation context.
+    """
 
-CONNECTED TO:
-- response_templates.json
-- conversation_state.py
-- app.py (caller)
+    def __init__(
+        self,
+        templates_path: str = "src/response_engine/response_templates.json"
+    ):
+        if not os.path.exists(templates_path):
+            raise FileNotFoundError(
+                f"Response templates not found at {templates_path}"
+            )
 
-INTEGRATION NOTES:
-- This is where emotion-awareness actually happens.
-- Output must always be a valid string.
+        with open(templates_path, "r", encoding="utf-8") as f:
+            self.templates = json.load(f)
 
-OWNER:
-Logic Team
+    def select_response(
+        self,
+        intent: str,
+        emotion: str,
+        last_intent: Optional[str] = None
+    ) -> str:
+        """
+        Select an appropriate response.
 
-DO NOT:
-- Perform ML here
-- Print or log excessively
-================================
-"""
+        Priority:
+        1. intent + emotion
+        2. intent only
+        3. fallback
+        """
+
+        # 1️⃣ Intent + Emotion
+        intent_block = self.templates.get(intent, {})
+        emotion_responses = intent_block.get(emotion)
+
+        if emotion_responses:
+            return random.choice(emotion_responses)
+
+        # 2️⃣ Intent only (neutral fallback)
+        neutral_responses = intent_block.get("neutral")
+        if neutral_responses:
+            return random.choice(neutral_responses)
+
+        # 3️⃣ Absolute fallback
+        fallback = self.templates.get("fallback", {}).get("neutral", [])
+        if fallback:
+            return random.choice(fallback)
+
+        return "I'm not sure how to respond to that right now."

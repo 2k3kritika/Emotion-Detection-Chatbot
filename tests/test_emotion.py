@@ -1,33 +1,18 @@
-"""
-================================
-FILE: test_emotion.py
-================================
-PURPOSE:
-Unit tests for emotion prediction functionality.
+import pytest
 
-TASKS FOR THIS FILE:
-1. Test emotion prediction with known inputs.
-2. Validate model loading and inference.
-3. Catch regression errors early.
+from src.emotion_detection.emotion_predictor import EmotionPredictor
 
-EXPECTED OUTPUT:
-- Test pass/fail results.
-- No production output.
 
-CONNECTED TO:
-- predict_emotion.py
-- emotion_classifier.pkl
-- vectorizer.pkl
+def test_emotion_prediction_runs():
+    predictor = EmotionPredictor(
+        model_path="models/emotion_classifier.pkl"
+    )
 
-INTEGRATION NOTES:
-- Tests must be runnable independently.
-- Failing tests block integration.
+    # Minimal dummy input that matches your pipeline expectations
+    # Adjust only if your model strictly requires vectors
+    dummy_input = ["i am feeling very sad today"]
 
-OWNER:
-Testing Team
+    emotion = predictor.predict(dummy_input)
 
-DO NOT:
-- Modify model files
-- Add runtime chatbot logic
-================================
-"""
+    assert emotion is not None
+    assert isinstance(emotion, str)

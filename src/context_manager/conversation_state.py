@@ -1,33 +1,56 @@
-"""
-================================
-FILE: conversation_state.py
-================================
-PURPOSE:
-Maintains short-term memory of the conversation to ensure
-emotionally consistent responses.
+# conversation_state.py
+from typing import Dict, Optional
+from datetime import datetime
 
-TASKS FOR THIS FILE:
-1. Store previous emotion and intent.
-2. Prevent abrupt emotional changes in replies.
-3. Provide context to response selector.
 
-EXPECTED OUTPUT:
-- Input: current emotion and intent
-- Output: updated conversation state object
+class ConversationState:
+    """
+    Manages conversational context per session/user.
+    """
 
-CONNECTED TO:
-- response_selector.py
-- app.py
+    def __init__(self):
+        # session_id -> state
+        self.sessions: Dict[str, Dict] = {}
 
-INTEGRATION NOTES:
-- Should remain lightweight and fast.
-- No persistence beyond session unless specified.
+    def initialize_session(self, session_id: str) -> None:
+        if session_id not in self.sessions:
+            self.sessions[session_id] = {
+                "last_intent": None,
+                "last_emotion": None,
+                "last_response": None,
+                "history": [],
+                "created_at": datetime.utcnow()
+            }
 
-OWNER:
-Logic Team
+    def update_state(
+        self,
+        session_id: str,
+        intent: str,
+        emotion: str,
+        response: str
+    ) -> None:
+        self.initialize_session(session_id)
 
-DO NOT:
-- Store long-term data
-- Add ML or NLP logic
-================================
-"""
+        self.sessions[session_id]["last_intent"] = intent
+        self.sessions[session_id]["last_emotion"] = emotion
+        self.sessions[session_id]["last_response"] = response
+
+        self.sessions[session_id]["history"].append({
+            "intent": intent,
+            "emotion": emotion,
+            "response": response,
+            "timestamp": datetime.utcnow()
+        })
+
+    def get_last_intent(self, session_id: str) -> Optional[str]:
+        return self.sessions.get(session_id, {}).get("last_intent")
+
+    def get_last_emotion(self, session_id: str) -> Optional[str]:
+        return self.sessions.get(session_id, {}).get("last_emotion")
+
+    def get_history(self, session_id: str):
+        return self.sessions.get(session_id, {}).get("history", [])
+
+    def reset_session(self, session_id: str) -> None:
+        if session_id in self.sessions:
+            del self.sessions[session_id]
