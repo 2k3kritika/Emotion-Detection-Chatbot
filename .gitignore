@@ -1,31 +1,73 @@
-"""
-================================
-FILE: .gitignore
-================================
-PURPOSE:
-Prevents unnecessary or sensitive files from being committed.
+# -----------------------------
+# Python
+# -----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
 
-TASKS FOR THIS FILE:
-1. Ignore virtual environments.
-2. Ignore cache files.
-3. Ignore local configs and logs.
+# Virtual environments
+venv/
+env/
+.venv/
 
-EXPECTED OUTPUT:
-- Clean GitHub repository.
-- No accidental commits.
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
 
-CONNECTED TO:
-- Git version control
+# Logs
+*.log
 
-INTEGRATION NOTES:
-- Model files should be included only if required.
-- Logs and temp files must stay ignored.
+# -----------------------------
+# ML / Model files
+# -----------------------------
+# Ignore trained models (can be large / regenerated)
+models/*.pkl
+models/*.joblib
 
-OWNER:
-Integration Team
+# Optional: keep folder but ignore contents
+!models/.gitkeep
 
-DO NOT:
-- Ignore source code
-- Remove critical exclusions
-================================
-"""
+# -----------------------------
+# Data files
+# -----------------------------
+# Raw & processed data (optional – keep if you want reproducibility)
+data/raw/*.csv
+data/processed/*.csv
+data/processed/*.pkl
+data/processed/*.json
+
+# If you WANT to track datasets, comment these lines above.
+
+# -----------------------------
+# FastAPI / Uvicorn
+# -----------------------------
+*.db
+*.sqlite3
+
+# -----------------------------
+# OS / Editor
+# -----------------------------
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Mac
+.DS_Store
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# -----------------------------
+# Environment variables
+# -----------------------------
+.env
+.env.*
